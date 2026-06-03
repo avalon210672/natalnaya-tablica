@@ -28,30 +28,15 @@ npm run dev:web
 
 Файлы через браузер; рецепты в `localStorage`.
 
-## Один файл для пользователя (без установки Node)
+## Сборка на своём Mac или Windows
 
-Собрать portable-версию — всё приложение в одном HTML:
+**Полная инструкция:** **[docs/BUILD-LOCAL.md](docs/BUILD-LOCAL.md)** — portable (без Rust), desktop на Mac (`.app`/`.dmg`), desktop на Windows (`.exe`), куда смотреть готовые файлы.
 
-```bash
-npm run build:portable
-```
-
-Папка `release/`: отдайте пользователю zip с `Натальная-Таблица.html` и скриптом `Запуск (macOS).command` или `Запуск (Windows).bat`. Подробнее: [docs/DISTRIBUTION.md](docs/DISTRIBUTION.md).
-
-## Сборка desktop-приложения (.app / .exe)
-
-Пошагово: **[docs/BUILD-DESKTOP.md](docs/BUILD-DESKTOP.md)**.
-
-Кратко — нужен [Rust](https://rustup.rs), затем:
-
-```bash
-npm install
-npm run build
-```
-
-Артефакты: `src-tauri/target/release/bundle/` (`.app` / `.dmg` на Mac).
-
-**Windows:** desktop-сборку (.exe) пока не делаем — отдавайте [portable](#один-файл-для-пользователя-без-установки-node) (`npm run build:portable`).
+| Цель | Команда |
+|------|---------|
+| Portable для Mac и Windows | `npm run build:portable` → папка `release/` |
+| Программа для Mac | `npm run build` → `src-tauri/target/release/bundle/` |
+| Программа для Windows | то же на **ПК с Windows** |
 
 Репозиторий: [github.com/avalon210672/natalnaya-tablica](https://github.com/avalon210672/natalnaya-tablica)
 
