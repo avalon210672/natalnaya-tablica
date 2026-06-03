@@ -1,6 +1,6 @@
 # Натальная Таблица
 
-Локальное приложение для **трансформаций Excel** (macOS / Windows через Tauri).
+Локальное приложение для **трансформаций Excel** (desktop на macOS; на Windows — portable HTML).
 
 1. Загрузите **исходник + эталон** → если пара совместима, задаёте имя → плитка в списке.
 2. Если файлы **не «бьются»** — трансформация **не создаётся**, с перечнем причин.
@@ -49,17 +49,11 @@ npm install
 npm run build
 ```
 
-Артефакты: `src-tauri/target/release/bundle/` (`.app` / `.dmg` на Mac, установщик на Windows).
+Артефакты: `src-tauri/target/release/bundle/` (`.app` / `.dmg` на Mac).
 
-### Сборка в GitHub (Mac + Windows без Horizon)
+**Windows:** desktop-сборку (.exe) пока не делаем — отдавайте [portable](#один-файл-для-пользователя-без-установки-node) (`npm run build:portable`).
 
-После push в `main` запускается [Actions → Build Desktop](https://github.com/avalon210672/natalnaya-tablica/actions). В конце run → **Artifacts**:
-
-- `desktop-macos` — `.dmg` / `.app`
-- `desktop-windows` — установщик `.exe` / `.msi`
-- `portable-html-windows-mac` — один HTML + скрипты запуска
-
-Ручной запуск: Actions → Build Desktop → **Run workflow**.
+Репозиторий: [github.com/avalon210672/natalnaya-tablica](https://github.com/avalon210672/natalnaya-tablica)
 
 ## Тест на паре из Downloads
 

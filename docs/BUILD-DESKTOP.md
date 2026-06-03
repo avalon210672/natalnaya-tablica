@@ -91,7 +91,7 @@ src-tauri/target/release/bundle/
 | Mac | `.app` / `.dmg` для Mac |
 | Windows | `.exe` / `.msi` для Windows |
 
-Кросс-компиляция (Mac → Windows exe) возможна, но сложнее; проще собрать на целевой системе или в **GitHub Actions**.
+Кросс-компиляция (Mac → Windows exe) не используем. Для Windows — [portable](./DISTRIBUTION.md#1-portable--один-html-рекомендуется-если-нет-rust).
 
 ---
 

@@ -57,7 +57,7 @@ npm run build
 
 - **Коллеге на Windows без прав администратора** → portable HTML или `.bat`.
 - **Постоянная работа на Mac** → собрать `.app` через Tauri.
-- **CI / релизы на GitHub** → в Actions ставить Rust + `npm run build` и прикладывать `.app` / `.exe` к Release; portable — `npm run build:portable` и zip `release/`.
+- **Windows** → portable (`npm run build:portable`), zip папки `release/`.
 
 ---
 
