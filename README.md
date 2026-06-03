@@ -1,33 +1,74 @@
-# Натальная таблица
+# Натальная Таблица
 
-Веб-приложение для отображения натальной карты в виде таблицы: положения планет по знакам зодиака, градусам, домам и ретроградности.
+Локальное приложение для **трансформаций Excel** (macOS / Windows через Tauri).
 
-## Запуск
+1. Загрузите **исходник + эталон** → если пара совместима, задаёте имя → плитка в списке.
+2. Если файлы **не «бьются»** — трансформация **не создаётся**, с перечнем причин.
+3. **«Трансформируем»** на плитке → новый исходник → диалог **Сохранить как**.
+
+## Требования
+
+- Node.js 20+
+- **Rust** (для desktop): [https://rustup.rs](https://rustup.rs)
+
+## Запуск (desktop)
 
 ```bash
 npm install
 npm run dev
 ```
 
-Откройте в браузере адрес, который выведет Vite (обычно http://localhost:5173).
+Откроется окно Tauri (в dev поднимается Vite на :5173).
 
-## Сборка
+## Только веб (без Tauri)
 
 ```bash
+npm run dev:web
+```
+
+Файлы через браузер; рецепты в `localStorage`.
+
+## Один файл для пользователя (без установки Node)
+
+Собрать portable-версию — всё приложение в одном HTML:
+
+```bash
+npm run build:portable
+```
+
+Папка `release/`: отдайте пользователю zip с `Натальная-Таблица.html` и скриптом `Запуск (macOS).command` или `Запуск (Windows).bat`. Подробнее: [docs/DISTRIBUTION.md](docs/DISTRIBUTION.md).
+
+## Сборка desktop-приложения (.app / .exe)
+
+Пошагово: **[docs/BUILD-DESKTOP.md](docs/BUILD-DESKTOP.md)**.
+
+Кратко — нужен [Rust](https://rustup.rs), затем:
+
+```bash
+npm install
 npm run build
-npm run preview
 ```
 
-## Структура проекта
+Артефакты: `src-tauri/target/release/bundle/` (`.app` / `.dmg` на Mac, установщик на Windows).
 
-```
-src/
-  components/   — UI: форма рождения, таблица, layout
-  data/         — справочники планет и знаков (RU)
-  lib/          — расчёт натальной карты (демо), форматирование
-  pages/        — страницы приложения
-  types/        — TypeScript-типы
-logs/           — логи агента/разработки
+### Сборка в GitHub (Mac + Windows без Horizon)
+
+После push в `main` запускается [Actions → Build Desktop](https://github.com/avalon210672/natalnaya-tablica/actions). В конце run → **Artifacts**:
+
+- `desktop-macos` — `.dmg` / `.app`
+- `desktop-windows` — установщик `.exe` / `.msi`
+- `portable-html-windows-mac` — один HTML + скрипты запуска
+
+Ручной запуск: Actions → Build Desktop → **Run workflow**.
+
+## Тест на паре из Downloads
+
+```bash
+npx tsx scripts/test-transform.mjs
 ```
 
-Расчёт позиций планет сейчас демонстрационный; для точных эфемерид планируется подключение астрономической библиотеки (см. TODO в `src/lib/natal.ts`).
+## Ограничения v1
+
+- Один лист, без сводных; **макросы не переносятся**.
+- Оформление: объединения ячеек и высоты строк из эталона, стили заголовков (заливка, рамки, Calibri). Итог сохраняется как **.xlsx**.
+- Старые трансформации без шаблона оформления выдают **.xls** без стилей — пересоздайте трансформацию.
